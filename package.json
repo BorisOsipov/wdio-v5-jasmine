@@ -12,15 +12,17 @@
     "@babel/core": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
     "@babel/register": "^7.4.4",
-    "@wdio/allure-reporter": "^5.3.4",
-    "@wdio/spec-reporter": "^5.2.3",
-    "@wdio/jasmine-framework": "^5.10.8",
+    "@wdio/local-runner": "^5.10.10",
     "@wdio/sync": "^5.10.8",
-    "webdriverio": "^5.3.5"
+    "@wdio/jasmine-framework": "^5.10.8",
+    "wdio-reportportal-reporter": "^5.0.1",
+    "@wdio/spec-reporter": "^5.9.3",
+    "wdio-reportportal-service": "^5.0.2",
+    "webdriverio": "^5.10.10"
   },
   "devDependencies": {
-    "@wdio/cli": "^5.3.5",
-    "@wdio/local-runner": "^5.10.9"
+    "@wdio/cli": "^5.10.10",
+    "@wdio/local-runner": "^5.10.10"
   },
   "babel": {
     "presets": [
