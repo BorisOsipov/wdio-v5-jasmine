@@ -3,37 +3,25 @@ const RpService = require("wdio-reportportal-service");
 const path = require("path");
 const fs = require("fs");
 
-const conf = {
-    reportPortalClientConfig: {
-        endpoint: 'http://35.159.46.231:8080/api/v1',
-        launch: 'osdsfsdff',
-        project: 'borisosipov_personal',
-        description: "Launch description text",
-        mode: 'DEFAULT',
-        debug: false,
-        tags: ["tags", "for", "launch"],
-    },
-    reportSeleniumCommands: false,
-    autoAttachScreenshots: false,
-    seleniumCommandsLogLevel: 'info',
-    screenshotsLogLevel: 'info',
-    parseTagsFromTestTitle: true,
-};
-
 // const conf = {
 //     reportPortalClientConfig: {
-//         endpoint: 'https://web.demo.reportportal.io/api/v1',
+//         token: '',
+//         endpoint: 'https://beta.demo.reportportal.io/api/v1',
 //         launch: 'osdsfsdff',
 //         project: 'borisosipov_personal',
 //         description: "Launch description text",
-//         debug: false
+//         mode: 'DEFAULT',
+//         debug: false,
+//         tags: ["tags", "for", "launch"],
 //     },
 //     reportSeleniumCommands: true,
 //     autoAttachScreenshots: false,
 //     seleniumCommandsLogLevel: 'debug',
 //     screenshotsLogLevel: 'info',
-//     parseTagsFromTestTitle: false,
+//     parseTagsFromTestTitle: true,
+//     useCucumberStepReporter: false
 // };
+//
 
 exports.config = {
     debug: true,
@@ -46,7 +34,7 @@ exports.config = {
     maxInstances: 1,
     capabilities: [
       {
-        maxInstances: 1,
+        maxInstances: 2,
         browserName: 'chrome',
       },
 
@@ -58,7 +46,10 @@ exports.config = {
     waitforTimeout: 10000,
     connectionRetryTimeout: 90000,
     connectionRetryCount: 3,
-    framework: 'jasmine',
+    framework: 'mocha',
+    mochaOpts: {
+        ui: 'bdd'
+    },
     jasmineNodeOpts: {
         // Jasmine default timeout
         defaultTimeoutInterval: 60000,
@@ -78,11 +69,11 @@ exports.config = {
     },
 
     afterTest: function (test) {
-        if (test.passed === false) {
-            const filename = "screnshot.png";
-            const outputFile = path.join(__dirname, filename);
-            browser.saveScreenshot(outputFile);
-            reportportal.sendFileToTest(test, 'info', filename, fs.readFileSync(outputFile));
-        }
+        // if (test.passed === false) {
+        //     const filename = "screnshot.png";
+        //     const outputFile = path.join(__dirname, filename);
+        //     browser.saveScreenshot(outputFile);
+        //     //reportportal.sendFileToTest(test, 'info', filename, fs.readFileSync(outputFile));
+        // }
     },
 }
